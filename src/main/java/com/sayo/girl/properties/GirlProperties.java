@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 22:55 2018/1/1
  */
 @Component
-@ConfigurationProperties(prefix = "girl")
+@ConfigurationProperties(prefix = "girl") //match to properties config
 public class GirlProperties {
     private String cupSize;
     private  Integer age;

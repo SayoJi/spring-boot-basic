@@ -1,10 +1,13 @@
 package com.sayo.girl.controller;
 
 import com.sayo.girl.domain.Girl;
+import com.sayo.girl.domain.Parent;
 import com.sayo.girl.domain.RequestResult;
 import com.sayo.girl.exception.GirlException;
 import com.sayo.girl.repository.GirlRepository;
+import com.sayo.girl.repository.ParentRepository;
 import com.sayo.girl.service.GirlService;
+import com.sayo.girl.service.ParentService;
 import com.sayo.girl.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,9 @@ public class GirlController {
 
     @Autowired
     private GirlRepository girlRepository;
+
+    @Autowired
+    private ParentService parentService;
 
     @Autowired
     private GirlService girlService;
@@ -111,4 +117,8 @@ public class GirlController {
         girlService.getAge(id);
     }
 
+    @GetMapping(value = "/parent/{homeNo}")
+    public List<Parent> getParentByHomeNo(@PathVariable("homeNo") Integer homeNo){
+        return parentService.queryParentByHomeNo(homeNo);
+    }
 }

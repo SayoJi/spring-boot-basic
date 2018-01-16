@@ -24,6 +24,8 @@ public class Girl {
     @NotNull(message = "money must be enter")
     private Double money;
 
+
+
     public Girl(){}
 
     @Override
