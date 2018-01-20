@@ -64,4 +64,15 @@ public class Parent {
     public void setIncome(Integer income) {
         this.income = income;
     }
+
+    @Override
+    public String toString() {
+        return "Parent{" +
+                "homeNo=" + homeNo +
+                ", name='" + name + '\'' +
+                ", job='" + job + '\'' +
+                ", income=" + income +
+                ", childList=" + childList +
+                '}';
+    }
 }

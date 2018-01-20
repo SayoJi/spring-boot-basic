@@ -1,13 +1,10 @@
 package com.sayo.girl.controller;
 
 import com.sayo.girl.domain.Girl;
-import com.sayo.girl.domain.Parent;
 import com.sayo.girl.domain.RequestResult;
 import com.sayo.girl.exception.GirlException;
 import com.sayo.girl.repository.GirlRepository;
-import com.sayo.girl.repository.ParentRepository;
 import com.sayo.girl.service.GirlService;
-import com.sayo.girl.service.ParentService;
 import com.sayo.girl.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,14 +28,11 @@ public class GirlController {
     private GirlRepository girlRepository;
 
     @Autowired
-    private ParentService parentService;
-
-    @Autowired
     private GirlService girlService;
 
     /**
-     * get all the girls from db
-     * @return
+     * get all the girls from db.
+     * @return query all girl from database.
      */
     @GetMapping(value = "/girls")
     public List<Girl> getGirlsList(){
@@ -48,12 +42,12 @@ public class GirlController {
 
     /**
      * add a girl to db
-     * @param girl
-     * @return
+     * @param girl girl body.
+     * @return when successful return a json what you post to database.
      */
     @PostMapping(value = "/girls")
     public RequestResult<Girl> AddGirl(@Valid Girl girl, BindingResult bindingResult){
-        RequestResult requestResult = new RequestResult();
+        RequestResult requestResult;
         if(bindingResult.hasErrors()) {
             requestResult = ResultUtil.error(201, bindingResult.getFieldError().getDefaultMessage());
         }else {
@@ -64,7 +58,7 @@ public class GirlController {
 
     /**
      * get a girl by id
-     * @param id
+     * @param id girl ID.
      * @return
      */
     @GetMapping(value = "/girls/{id}")
@@ -115,10 +109,5 @@ public class GirlController {
     @GetMapping(value = "/girls/age/validate/{id}")
     public void getAge(@PathVariable("id") Integer id) throws GirlException{
         girlService.getAge(id);
-    }
-
-    @GetMapping(value = "/parent/{homeNo}")
-    public List<Parent> getParentByHomeNo(@PathVariable("homeNo") Integer homeNo){
-        return parentService.queryParentByHomeNo(homeNo);
     }
 }

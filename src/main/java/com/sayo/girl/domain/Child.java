@@ -1,8 +1,6 @@
 package com.sayo.girl.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Shuangyao
@@ -19,7 +17,15 @@ public class Child {
     private String name;
     private Integer age;
     private String education;
+
+    @Column(name = "HOME_NO")
     private Integer homeNo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HOME_NO",insertable=false, updatable=false)
+    private Parent parent;
+
+
 
     public Child() {
     }
@@ -62,6 +68,14 @@ public class Child {
 
     public void setHomeNo(Integer homeNo) {
         this.homeNo = homeNo;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
     @Override

@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface ParentRepository extends JpaRepository<Parent, Integer> {
 
-    public List<Parent> findByHomeNo(Integer homeNo);
+    Parent findByHomeNo(Integer homeNo);
+//    public List<Parent> findByHomeNoAnd
 }

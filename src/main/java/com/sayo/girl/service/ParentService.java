@@ -5,8 +5,6 @@ import com.sayo.girl.repository.ParentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by Shuangyao
  * 7:52 2018/1/16
@@ -18,8 +16,7 @@ public class ParentService {
     @Autowired
     private ParentRepository parentRepository;
 
-    public List<Parent> queryParentByHomeNo(Integer homeNo){
+    public Parent queryParentByHomeNo(Integer homeNo){
         return this.parentRepository.findByHomeNo(homeNo);
     }
-
 }
