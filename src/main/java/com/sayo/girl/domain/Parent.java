@@ -19,10 +19,19 @@ public class Parent {
     private String job;
     private Integer income;
 
-    @OneToMany
+    @OneToMany()
+    @JoinColumn(name = "HOME_NO")
     private List<Child> childList;
 
     public Parent() {
+    }
+
+    public List<Child> getChildList() {
+        return childList;
+    }
+
+    public void setChildList(List<Child> childList) {
+        this.childList = childList;
     }
 
     public Integer getHomeNo() {
@@ -49,14 +58,6 @@ public class Parent {
         this.job = job;
     }
 
-    public List<Child> getChildList() {
-        return childList;
-    }
-
-    public void setChildList(List<Child> childList) {
-        this.childList = childList;
-    }
-
     public Integer getIncome() {
         return income;
     }
@@ -72,7 +73,6 @@ public class Parent {
                 ", name='" + name + '\'' +
                 ", job='" + job + '\'' +
                 ", income=" + income +
-                ", childList=" + childList +
                 '}';
     }
 }

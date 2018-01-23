@@ -21,11 +21,9 @@ public class Child {
     @Column(name = "HOME_NO")
     private Integer homeNo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HOME_NO",insertable=false, updatable=false)
-    private Parent parent;
-
-
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "HOME_NO",insertable=false, updatable=false)
+//    private Parent parent;
 
     public Child() {
     }
@@ -70,13 +68,13 @@ public class Child {
         this.homeNo = homeNo;
     }
 
-    public Parent getParent() {
-        return parent;
-    }
-
-    public void setParent(Parent parent) {
-        this.parent = parent;
-    }
+//    public Parent getParent() {
+//        return parent;
+//    }
+//
+//    public void setParent(Parent parent) {
+//        this.parent = parent;
+//    }
 
     @Override
     public String toString() {
