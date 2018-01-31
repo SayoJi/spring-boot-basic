@@ -49,8 +49,10 @@ public class VoucherController {
         return voucherApprovalViewList;
     }
 
-//    @RequestMapping(value = "/updateVoucherApproval", method = RequestMethod.POST)
-//    public boolean updateVoucherApproval() {
-//
-//    }
+    @RequestMapping(value = "/updateVoucherApproval", method = RequestMethod.POST)
+    public boolean updateVoucherApproval(@RequestBody VoucherApprovalView voucherApprovalView) {
+        return true;
+    }
+
+
 }
