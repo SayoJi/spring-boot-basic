@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class HttpAspect {
 
-    private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
+    private final static    Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
     @Pointcut("execution(public * com.sayo.girl.controller.GirlController.*(..))")
     public void log(){
