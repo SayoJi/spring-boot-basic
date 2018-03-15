@@ -44,4 +44,27 @@ public class GirlService {
             throw new GirlException(ResultEnum.ADULT);
         }
     }
+
+    /**
+     * test when a method with transactional call another method,
+     * when the other save fail, transactional work ??
+     * the answer yes, two data save failed.
+     */
+    @Transactional
+    public void testTransactional(){
+        Girl girl1 = new Girl();
+        girl1.setAge(25);
+        girl1.setCupSize("B");
+        girl1.setMoney((double) 100);
+        girlRepository.save(girl1);
+        saveGirl2();
+    }
+
+    private void saveGirl2(){
+        Girl girl2 = new Girl();
+        girl2.setAge(19);
+        girl2.setCupSize("C");
+        girl2.setMoney((double)12);
+        girlRepository.save(girl2);
+    }
 }

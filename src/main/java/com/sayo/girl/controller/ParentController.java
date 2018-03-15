@@ -4,10 +4,14 @@ import com.sayo.girl.domain.Parent;
 import com.sayo.girl.repository.ParentRepository;
 import com.sayo.girl.service.ChildServiceIf;
 import com.sayo.girl.service.ParentService;
+import com.sayo.girl.valueobject.ValidateForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by Shuangyao
@@ -47,6 +51,13 @@ public class ParentController {
         Parent parent =  parentServiceProdImp.queryParentByHomeNo(homeNo);
         LOGGER.error("environment={}:", childServiceIf.tsetMutiEnvironmentConfig());
         return parent;
+    }
+
+    @PostMapping(value = "/testVidate")
+    public boolean validate(@RequestBody ValidateForm validateForm) {
+        System.out.printf("++++++++++++++++++++===========" + validateForm);
+
+        return true;
     }
 
 }

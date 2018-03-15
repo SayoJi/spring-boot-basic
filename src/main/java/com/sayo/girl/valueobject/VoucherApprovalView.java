@@ -2,6 +2,8 @@ package com.sayo.girl.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ import java.util.Date;
  */
 public class VoucherApprovalView {
 
+    @NotNull
     private String voucherNo;
     private String voucherCurr;
     private BigDecimal voucherAmt;

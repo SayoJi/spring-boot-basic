@@ -18,4 +18,20 @@ public class VoucherEnquiryForm {
     private String creditCardNo;
     private String paymentRefe;
     private String receiptNo;
+
+    @Override
+    public String toString() {
+        return "VoucherEnquiryForm{" +
+                "voucherNo='" + voucherNo + '\'' +
+                ", propPolNo='" + propPolNo + '\'' +
+                ", voucherDateFrom=" + voucherDateFrom +
+                ", voucherDateTo=" + voucherDateTo +
+                ", remittance='" + remittance + '\'' +
+                ", currency='" + currency + '\'' +
+                ", paymentAmount=" + paymentAmount +
+                ", creditCardNo='" + creditCardNo + '\'' +
+                ", paymentRefe='" + paymentRefe + '\'' +
+                ", receiptNo='" + receiptNo + '\'' +
+                '}';
+    }
 }

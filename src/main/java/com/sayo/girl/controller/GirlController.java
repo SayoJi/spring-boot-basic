@@ -9,10 +9,16 @@ import com.sayo.girl.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +53,7 @@ public class GirlController {
      * @param girl girl body.
      * @return when successful return a json what you post to database.
      */
-    @PostMapping(value = "/girls")
+    @PostMapping(value = "/addGirl")
     public RequestResult<Girl> AddGirl(@Valid Girl girl, BindingResult bindingResult) {
         RequestResult requestResult;
         if (bindingResult.hasErrors()) {
@@ -114,5 +120,26 @@ public class GirlController {
     @GetMapping(value = "/girls/age/validate/{id}")
     public void getAge(@PathVariable("id") Integer id) throws GirlException {
         girlService.getAge(id);
+    }
+
+    @PostMapping(value = "dateTest")
+    public boolean testReceiveDate(@RequestParam("date") Date date) {
+
+        System.out.printf("=================++++++++++++++++++++++"+date);
+        return true;
+    }
+
+    @PostMapping(value = "testTransactional")
+    public void testTransactional(){
+        girlService.testTransactional();
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder, WebRequest request) {
+
+        //转换日期
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        // CustomDateEditor为自定义日期编辑器
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }

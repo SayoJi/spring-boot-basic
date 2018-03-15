@@ -2,7 +2,6 @@ package com.sayo.girl.valueobject;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -12,7 +11,7 @@ import java.util.Date;
 public class User {
     private String userId;
     private String userName;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastUpdateTime;
 
     public String getUserId() {

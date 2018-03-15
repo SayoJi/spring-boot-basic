@@ -1,6 +1,8 @@
 package com.sayo.girl.controller;
 
 import com.sayo.girl.valueobject.VoucherApprovalView;
+import com.sayo.girl.valueobject.VoucherEnquiryForm;
+import com.sayo.girl.valueobject.VoucherEnquiryView;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -23,21 +25,21 @@ public class VoucherController {
                                                     @RequestParam(value = "location", required = false) String location) {
 
         List<VoucherApprovalView> voucherApprovalViewList = new ArrayList<>();
-        for(int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             VoucherApprovalView voucherApprovalView = new VoucherApprovalView();
-            if(voucherNo!=null) {
+            if (voucherNo != null) {
                 voucherApprovalView.setVoucherNo(voucherNo);
-            }else {
-                voucherApprovalView.setVoucherNo("voucherNo"+i);
+            } else {
+                voucherApprovalView.setVoucherNo("voucherNo" + i);
             }
             voucherApprovalView.setVoucherCurr("USD");
             voucherApprovalView.setVoucherAmt(new BigDecimal("1254345.23"));
             voucherApprovalView.setVoucherDate(new Date());
             voucherApprovalView.setApprType("LargePay");
-            if(batchNo!=null){
+            if (batchNo != null) {
                 voucherApprovalView.setBatchNo(batchNo);
-            }else {
-                voucherApprovalView.setBatchNo("batchNo"+i);
+            } else {
+                voucherApprovalView.setBatchNo("batchNo" + i);
             }
             voucherApprovalView.setIdCopy("N");
             voucherApprovalView.setLocation("PT");
@@ -52,6 +54,16 @@ public class VoucherController {
     @RequestMapping(value = "/updateVoucherApproval", method = RequestMethod.POST)
     public boolean updateVoucherApproval(@RequestBody VoucherApprovalView voucherApprovalView) {
         return true;
+    }
+
+    @GetMapping(value = "/queryVoucher")
+    public List<VoucherEnquiryView> queryVoucher(@RequestBody VoucherEnquiryForm voucherEnquiryForm) {
+//        VoucherEnquiryForm voucherEnquiryForm = new Gson().fromJson(queryInfo, VoucherEnquiryForm.class);
+        System.out.printf("===========++++++++++++++====================" + voucherEnquiryForm);
+        List<VoucherEnquiryView> voucherEnquiryViews = new ArrayList<>();
+
+
+        return voucherEnquiryViews;
     }
 
 

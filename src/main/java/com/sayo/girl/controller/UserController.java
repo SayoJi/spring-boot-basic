@@ -1,12 +1,14 @@
 package com.sayo.girl.controller;
 
 import com.sayo.girl.valueobject.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.sayo.girl.valueobject.UserForm;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * Created by Shuangyao
@@ -15,6 +17,7 @@ import java.util.Date;
 
 @RestController
 public class UserController {
+
 
     @GetMapping(value = "/user")
     public User queryUser() {
@@ -28,12 +31,19 @@ public class UserController {
     }
 
     @PutMapping(value = "/updateUser")
-    public User updateUser(User user) {
+    public User updateUser(@RequestBody User user) {
         User user1 = new User();
         user1.setUserId(user.getUserId());
         user1.setUserName(user.getUserName());
         user1.setLastUpdateTime(user.getLastUpdateTime());
+        System.out.println(user1);
         return user1;
+    }
+
+    @PostMapping(value = "/addUser")
+    public boolean addUser(@RequestBody @Valid UserForm userForm) {
+        System.out.println("===========================" + userForm);
+        return true;
     }
 
 }
