@@ -7,7 +7,6 @@ import java.util.Set;
 public class Teacher {
 
     @Id
-    @GeneratedValue
     private Integer id;
     private String name;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

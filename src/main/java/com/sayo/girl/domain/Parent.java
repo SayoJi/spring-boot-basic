@@ -13,7 +13,6 @@ public class Parent {
 
     @Id
     @Column(name = "HOME_NO")
-    @GeneratedValue
     private Integer homeNo;
     private String name;
     private String job;

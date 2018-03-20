@@ -1,6 +1,8 @@
 package com.sayo.girl.controller;
 
+import com.sayo.girl.domain.Child;
 import com.sayo.girl.domain.Parent;
+import com.sayo.girl.repository.ChildRepository;
 import com.sayo.girl.repository.ParentRepository;
 import com.sayo.girl.service.ChildServiceIf;
 import com.sayo.girl.service.ParentService;
@@ -30,20 +32,33 @@ public class ParentController {
 
     @Autowired
     private ChildServiceIf childServiceIf;
+    @Autowired
+    private ChildRepository childRepository;
 
     // post parent
     @PostMapping(value = "/parent/add")
-    public Parent AddParent(@RequestParam("HomeNo") Integer homeNo,
-                            @RequestParam("income") Integer income,
-                            @RequestParam("job") String job,
-                            @RequestParam("name") String name){
+    public void AddParent(){
         Parent parent = new Parent();
-        parent.setHomeNo(homeNo);
-        parent.setIncome(income);
-        parent.setJob(job);
-        parent.setName(name);
+        parent.setHomeNo(22);
+        parent.setIncome(123456);
+        parent.setJob("Doctor");
+        parent.setName("Liu");
 
-        return  parentRepository.save(parent);
+        Child child1 = new Child();
+        child1.setHomeNo(22);
+        child1.setName("sayo");
+        parent.getChildList().add(child1);
+        this.parentRepository.save(parent);
+
+        Parent parent2 = new Parent();
+        parent.setHomeNo(23);
+        parent2.setName("Su");
+        Child child2 = new Child();
+        child2.setHomeNo(23);
+        child2.setName("Xue");
+        child2.setParent(parent);
+
+        this.childRepository.save(child2);
     }
 
     @GetMapping(value = "/parent/{homeNo}")

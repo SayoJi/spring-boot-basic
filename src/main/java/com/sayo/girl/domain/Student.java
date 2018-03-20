@@ -7,7 +7,6 @@ import java.util.Set;
 public class Student {
 
     @Id
-    @GeneratedValue
     private Integer id;
     private String name;
     @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
