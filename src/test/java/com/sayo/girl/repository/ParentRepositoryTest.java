@@ -21,18 +21,25 @@ import java.util.List;
 public class ParentRepositoryTest {
     @Autowired
     private ParentRepository parentRepository;
+    @Autowired
+    private ChildRepository childRepository;
 
     @Test
     public void testFindByChildName(){
-        Child sayo = new Child();
-        sayo.setName("sayo");
-
-        Child ly = new Child();
-        ly.setName("Ly");
+//        Child sayo = new Child();
+//        sayo.setName("sayo");
+//        this.childRepository.save(sayo);
+//
+//        Child ly = new Child();
+//        ly.setName("Ly");
+//        this.childRepository.save(ly);
 
         List<Child> children = new ArrayList<>();
-        children.add(sayo);
-        children.add(ly);
+        Child child1 = this.childRepository.findOne(4);
+        Child child2 = this.childRepository.findOne(5);
+
+        children.add(child1);
+        children.add(child2);
 
         Parent parent1 = new Parent();
         parent1.setHomeNo(22);
@@ -42,6 +49,7 @@ public class ParentRepositoryTest {
         this.parentRepository.save(parent1);
 
         List<Parent> resultParent = this.parentRepository.findByChildList_Name("sayo");
+        Parent parent = this.parentRepository.findOne(22);
 
         Assert.assertEquals(resultParent.size(),1);
 

@@ -19,7 +19,7 @@ public class Parent {
     private Integer income;
 
     @OneToMany()
-    @JoinColumn(name = "HOME_NO")
+    @JoinColumn(name = "HOME_NO",insertable=false, updatable=false)
     private List<Child> childList;
 
     public Parent() {

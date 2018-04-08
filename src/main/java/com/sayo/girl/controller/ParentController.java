@@ -56,7 +56,7 @@ public class ParentController {
         Child child2 = new Child();
         child2.setHomeNo(23);
         child2.setName("Xue");
-        child2.setParent(parent);
+//        child2.setParent(parent);
 
         this.childRepository.save(child2);
     }

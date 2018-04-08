@@ -9,7 +9,7 @@ public class Student {
     @Id
     private Integer id;
     private String name;
-    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "students")
     private Set<Teacher> teachers;
 
     public Integer getId() {

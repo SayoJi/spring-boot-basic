@@ -9,7 +9,7 @@ public class Teacher {
     @Id
     private Integer id;
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany()
     @JoinTable(name = "TEACHER_STUDENT",
             joinColumns =
             @JoinColumn(name = "TEACHER_ID", referencedColumnName = "ID", updatable = false, insertable = false),

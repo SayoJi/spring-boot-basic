@@ -35,6 +35,7 @@ public class TeacherRepositoryTest {
         students.add(student4);
 
         Teacher teacher = new Teacher();
+        teacher.setId(111);
         teacher.setName("teacher1");
         teacher.setStudents(students);
 
