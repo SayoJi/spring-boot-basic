@@ -186,7 +186,7 @@ public class WebSecurityConfig {
             String currentOrigin = req.getHeader("Origin");
             if (!StringUtil.isEmpty(currentOrigin)) {
                 res.setHeader("Access-Control-Allow-Origin", currentOrigin);
-            }  else {
+            } else {
                 res.setHeader("Access-Control-Allow-Origin", "*");
             }
             res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
