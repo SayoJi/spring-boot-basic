@@ -1,14 +1,20 @@
 package com.sayo.girl.config;
 
+import com.sayo.girl.dao.UserDao;
+import com.sayo.girl.domain.User;
 import com.sayo.girl.domain.UserContext;
+import com.sayo.girl.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service("databaseUserDetailsService")
-public class DatabaseUserDetailsService extends UserDetailsService {
+public class DatabaseUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
@@ -19,13 +25,9 @@ public class DatabaseUserDetailsService extends UserDetailsService {
         UserContext newUser = null;
 
         // Retrieve user, function point and role information from local database
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUserId(s);
         if (user != null) {
-            Boolean isEnable = Boolean.FALSE;
-            if ("Active".equals(user.getStatus())) {
-                isEnable = Boolean.TRUE;
-            }
-
+            Boolean isEnable = user.getEnableFlag() == null ? Boolean.FALSE : user.getEnableFlag();
 
             newUser =
                     new UserContext(

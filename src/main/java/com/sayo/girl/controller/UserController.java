@@ -4,6 +4,7 @@ import com.sayo.girl.valueobject.TestRoleView;
 import com.sayo.girl.valueobject.User;
 import com.sayo.girl.valueobject.UserForm;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
