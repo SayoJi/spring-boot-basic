@@ -1,6 +1,5 @@
 package com.sayo.girl.config;
 
-import com.sayo.girl.dao.UserDao;
 import com.sayo.girl.domain.User;
 import com.sayo.girl.domain.UserContext;
 import com.sayo.girl.repository.UserRepository;
@@ -18,14 +17,12 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    UserDao userDao;
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserContext newUser = null;
 
         // Retrieve user, function point and role information from local database
-        User user = userRepository.findByUserId(s);
+        User user = userRepository.findByUserName(username);
         if (user != null) {
             Boolean isEnable = user.getEnableFlag() == null ? Boolean.FALSE : user.getEnableFlag();
 
@@ -39,12 +36,11 @@ public class DatabaseUserDetailsService implements UserDetailsService {
                             Boolean.TRUE,
                             new ArrayList<GrantedAuthority>());
             newUser.setUser(user);
-            newUser.setUserRolesList(userDao.queryUserOwnedRoleCodes(username));
-            newUser.setUserFunctionPointsList(userDao.queryUserOwnedFunctionPointCodes(username));
+            newUser.setUserRolesList(userRepository.queryUserOwnedRoleCodes(username));
         } else {
-            throw new ApplicationException("User '" + username + "' is not exist.")
-                    .addMessage("security.maintain_user.not_existing_user",
-                            new Object[]{username});
+//            throw new ApplicationException("User '" + username + "' is not exist.")
+//                    .addMessage("security.maintain_user.not_existing_user",
+//                            new Object[]{username});
         }
         return newUser;
     }

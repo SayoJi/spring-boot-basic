@@ -2,8 +2,11 @@ package com.sayo.girl.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public class UserBase{
+
     private String userName;
     private String userDescription;
 
@@ -13,7 +16,7 @@ public class UserBase{
      * @return user id
      */
     @Id
-    @Column(name = "USER_NAME", unique = true, nullable = false, length = 100)
+    @Column(name = "user_name")
     public String getUserName() {
         return userName;
     }
@@ -25,7 +28,6 @@ public class UserBase{
      * The real user full name. Usually, it is used to be displayed in screens or reports.
      * @return user name
      */
-    @Column(name = "USER_DESCRIPTION", length = 200)
     public String getUserDescription() {
         return userDescription;
     }

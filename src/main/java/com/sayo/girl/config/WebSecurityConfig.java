@@ -23,6 +23,7 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -184,7 +185,7 @@ public class WebSecurityConfig {
             HttpServletResponse res = (HttpServletResponse) response;
             HttpServletRequest req = (HttpServletRequest) request;
             String currentOrigin = req.getHeader("Origin");
-            if (!StringUtil.isEmpty(currentOrigin)) {
+            if (!StringUtils.isEmpty(currentOrigin)) {
                 res.setHeader("Access-Control-Allow-Origin", currentOrigin);
             } else {
                 res.setHeader("Access-Control-Allow-Origin", "*");

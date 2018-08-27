@@ -1,18 +1,25 @@
 package com.sayo.girl.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class UserRole {
 
-    @Id
+
     private String roleCode;
 
     private String parentRoleCode;
 
     private String roleDescription;
 
+    private List<User> users;
+
+    @Id
+    @Column(name = "role_code")
     public String getRoleCode() {
         return roleCode;
     }
@@ -35,5 +42,14 @@ public class UserRole {
 
     public void setRoleDescription(String roleDescription) {
         this.roleDescription = roleDescription;
+    }
+
+    @ManyToMany(mappedBy = "roles")
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

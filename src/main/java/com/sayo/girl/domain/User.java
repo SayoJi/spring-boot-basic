@@ -1,27 +1,19 @@
 package com.sayo.girl.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
 public class User extends UserBase {
 
-    @Id
-    private String userId;
     private String password;
     private Boolean locked;
     private String groupCode;
     private Boolean enableFlag;
     private List<UserRole> roles;
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getPassword() {
         return password;
@@ -55,6 +47,10 @@ public class User extends UserBase {
         this.enableFlag = enableFlag;
     }
 
+    @ManyToMany
+    @JoinTable(name = "user_user_role",
+    joinColumns = @JoinColumn(name = "user_name", referencedColumnName = "user_name", updatable = false, insertable = false),
+    inverseJoinColumns = @JoinColumn(name = "role_code", referencedColumnName = "role_code", updatable = false, insertable = false))
     public List<UserRole> getRoles() {
         return roles;
     }
