@@ -19,29 +19,31 @@ public class DatabaseUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserContext newUser = null;
+        UserContext expectedUser = null;
 
         // Retrieve user, function point and role information from local database
         User user = userRepository.findByUserName(username);
+
+        String password = SystemParams.getPassword();
         if (user != null) {
             Boolean isEnable = user.getEnableFlag() == null ? Boolean.FALSE : user.getEnableFlag();
 
-            newUser =
+            expectedUser =
                     new UserContext(
                             user.getUserName(),
-                            user.getPassword(),
+                            password,
                             isEnable,
                             Boolean.TRUE,
                             Boolean.TRUE,
                             Boolean.TRUE,
                             new ArrayList<GrantedAuthority>());
-            newUser.setUser(user);
-            newUser.setUserRolesList(userRepository.queryUserOwnedRoleCodes(username));
+            expectedUser.setUser(user);
+            expectedUser.setUserRolesList(userRepository.queryUserOwnedRoleCodes(username));
         } else {
 //            throw new ApplicationException("User '" + username + "' is not exist.")
 //                    .addMessage("security.maintain_user.not_existing_user",
 //                            new Object[]{username});
         }
-        return newUser;
+        return expectedUser;
     }
 }
