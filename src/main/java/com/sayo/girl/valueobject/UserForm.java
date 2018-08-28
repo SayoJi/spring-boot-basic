@@ -1,10 +1,6 @@
 package com.sayo.girl.valueobject;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Shuangyao
@@ -12,30 +8,11 @@ import javax.validation.constraints.NotNull;
  */
 public class UserForm {
 
-    @NotEmpty(message = "user code must enter.")
-    private String userCode;
-    @NotNull(message = "user name can't null.")
     private String userName;
-    @Length(min = 11,max = 11,message = "phone number must 11.")
-    private String phone;
+    private String password;
+    private String userDesc;
 
-    @Override
-    public String toString() {
-        return "UserForm{" +
-                "userCode='" + userCode + '\'' +
-                ", userName='" + userName + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
-
-    public String getUserCode() {
-        return userCode;
-    }
-
-
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
-    }
+    private List<String> roleCodeList;
 
     public String getUserName() {
         return userName;
@@ -45,11 +22,27 @@ public class UserForm {
         this.userName = userName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserDesc() {
+        return userDesc;
+    }
+
+    public void setUserDesc(String userDesc) {
+        this.userDesc = userDesc;
+    }
+
+    public List<String> getRoleCodeList() {
+        return roleCodeList;
+    }
+
+    public void setRoleCodeList(List<String> roleCodeList) {
+        this.roleCodeList = roleCodeList;
     }
 }

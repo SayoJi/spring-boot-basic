@@ -1,9 +1,11 @@
 package com.sayo.girl.controller;
 
+import com.sayo.girl.service.UserService;
 import com.sayo.girl.valueobject.TestRoleView;
 import com.sayo.girl.valueobject.User;
 import com.sayo.girl.valueobject.UserForm;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,9 @@ import java.util.logging.Logger;
 
 @RestController
 public class UserController {
+
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping(value = "/user")
@@ -44,10 +49,9 @@ public class UserController {
         return user1;
     }
 
-    @PostMapping(value = "/addUser")
-    public boolean addUser(@RequestBody @Valid UserForm userForm) {
-        System.out.println("===========================" + userForm);
-        return true;
+    @PostMapping(value = "/user/add")
+    public boolean addUser(@RequestBody UserForm userForm) {
+        return userService.addUser(userForm);
     }
 
     @GetMapping(value = "/getRole")

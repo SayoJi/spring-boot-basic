@@ -136,21 +136,21 @@ public class WebSecurityConfig {
                             "/v2/api-docs").permitAll()
                     //for all url start with /pub(for public endpoint), by pass security checking.
                     .antMatchers("/api/pub/**/*").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     //for all other endpoints, cannot access until authenticated.
                     //if you want to disable the checking for development, please change it to permitAll().
-                    .anyRequest().authenticated()
+//                    .anyRequest().authenticated()
                     //login and save cookie to cookiename "curl -X POST http://localhost:8082/admin_service/login
                     // -d username=bob -d password=bobspassword -c cookiename"
-                    .and().formLogin().loginProcessingUrl("/api/login").successHandler(authenticationSuccessHandler)
-                    .failureHandler(authenticationFailHandler)
-                    .and().sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                    .sessionAuthenticationStrategy(
-                            new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl()))
-                    .and().exceptionHandling()
-                    .authenticationEntryPoint(authenticationEntryPointImpl)
-                    .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/api/logout")).logoutSuccessUrl("/");
+//                    .and().formLogin().loginProcessingUrl("/api/login").successHandler(authenticationSuccessHandler)
+//                    .failureHandler(authenticationFailHandler)
+//                    .and().sessionManagement()
+//                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                    .sessionAuthenticationStrategy(
+//                            new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl()))
+//                    .and().exceptionHandling()
+//                    .authenticationEntryPoint(authenticationEntryPointImpl)
+//                    .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/api/logout")).logoutSuccessUrl("/");
 
         }
 
