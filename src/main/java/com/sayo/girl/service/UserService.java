@@ -35,6 +35,7 @@ public class UserService {
         user.setPassword(userForm.getPassword());
         user.setUserName(userForm.getUserName());
         user.setUserDescription(userForm.getUserDesc());
+        user.setEnableFlag(true);
 
         List<UserRole> roleList = new ArrayList<>();
         UserRole userRole;

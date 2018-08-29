@@ -24,14 +24,14 @@ public class DatabaseUserDetailsService implements UserDetailsService {
         // Retrieve user, function point and role information from local database
         User user = userRepository.findByUserName(username);
 
-        String password = SystemParams.getPassword();
+//        String password = SystemParams.getPassword();
         if (user != null) {
             Boolean isEnable = user.getEnableFlag() == null ? Boolean.FALSE : user.getEnableFlag();
 
             expectedUser =
                     new UserContext(
                             user.getUserName(),
-                            password,
+                            user.getPassword(),
                             isEnable,
                             Boolean.TRUE,
                             Boolean.TRUE,

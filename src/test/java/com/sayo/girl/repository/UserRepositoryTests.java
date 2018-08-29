@@ -1,7 +1,9 @@
 package com.sayo.girl.repository;
 
+import com.sayo.girl.config.SystemParams;
 import com.sayo.girl.domain.User;
 import com.sayo.girl.domain.UserRole;
+import org.apache.catalina.core.ApplicationContext;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

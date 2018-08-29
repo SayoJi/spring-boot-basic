@@ -14,6 +14,7 @@ public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHan
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        logger.error("Login Failed: " + exception.getMessage());
         this.returnJson(response, exception);
     }
 
@@ -23,6 +24,6 @@ public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHan
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.getWriter().println("{\"exceptionId\":\"null\",\"errorType\":null,\"messageList\":[{\"messageCode\":\"security.user_login.authentication_fail\"," +
-                "\"message\":\"LAN ID or Password is incorrect.\"}],\"serverTime\": " + System.currentTimeMillis() + "}");
+                "\"message\": "+ exception.getMessage() + "}],\"serverTime\": " + System.currentTimeMillis() + "}");
     }
 }

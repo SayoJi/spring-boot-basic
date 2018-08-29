@@ -1,5 +1,6 @@
 package com.sayo.girl.controller;
 
+import com.sayo.girl.config.SystemParams;
 import com.sayo.girl.service.UserService;
 import com.sayo.girl.valueobject.TestRoleView;
 import com.sayo.girl.valueobject.User;
@@ -22,24 +23,22 @@ import java.util.logging.Logger;
  */
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
 
-    @GetMapping(value = "/user")
+    @GetMapping(value = "/query/all")
     public User queryUser() {
+        System.setProperty("jasypt.encryptor.password","password");
+        System.out.println(SystemParams.getPassword());
         User user = new User();
-        user.setUserId("userId01");
-        user.setUserName("userName01");
-
-//        user.setLastUpdateTime(new Timestamp(System.currentTimeMillis()));
-        user.setLastUpdateTime(new Date());
         return user;
     }
 
-    @PutMapping(value = "/updateUser")
+    @PutMapping(value = "/update")
     public User updateUser(@RequestBody User user) {
         User user1 = new User();
         user1.setUserId(user.getUserId());
@@ -49,7 +48,7 @@ public class UserController {
         return user1;
     }
 
-    @PostMapping(value = "/user/add")
+    @PostMapping(value = "/new")
     public boolean addUser(@RequestBody UserForm userForm) {
         return userService.addUser(userForm);
     }
