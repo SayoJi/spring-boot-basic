@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component("encryor")
-public class Encryor {
+@Component("encrytor")
+public class Encrytor {
 
     @Autowired
     private StandardPBEStringEncryptor standardPBEStringEncryptor;

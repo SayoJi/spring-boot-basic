@@ -5,6 +5,7 @@ import com.sayo.girl.service.UserService;
 import com.sayo.girl.valueobject.TestRoleView;
 import com.sayo.girl.valueobject.User;
 import com.sayo.girl.valueobject.UserForm;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
