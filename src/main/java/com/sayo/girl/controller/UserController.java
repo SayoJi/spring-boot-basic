@@ -33,8 +33,8 @@ public class UserController {
 
     @GetMapping(value = "/query/all")
     public User queryUser() {
-        System.setProperty("jasypt.encryptor.password","password");
         System.out.println(SystemParams.getPassword());
+        System.out.println(SystemParams.getUserName());
         User user = new User();
         return user;
     }

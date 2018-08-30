@@ -1,5 +1,6 @@
 package com.sayo.girl.config;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -24,17 +25,17 @@ public class SystemParams {
         return userName;
     }
 
-    @Value("${userName}")
+    @Value("${localUserName}")
     public void setUserName(String userName) {
-        SystemParams.userName = encrytor.decrypt(userName);
+        SystemParams.userName = userName;
     }
 
     public static String getPassword() {
         return password;
     }
 
-    @Value("${password}")
+    @Value("${localPassword}")
     public void setPassword(String password) {
-        SystemParams.password = encrytor.decrypt(password);
+        SystemParams.password = password;
     }
 }
