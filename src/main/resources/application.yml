@@ -10,6 +10,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  jasypt:
-    encryptor:
-      password: password
+#  jasypt:
+#    encryptor:
+#      password: 123456

@@ -1,7 +1,5 @@
 package com.sayo.girl.config;
 
-import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -15,9 +13,6 @@ import org.springframework.stereotype.Component;
 @PropertySource(value = "classpath:proj.properties")
 public class SystemParams {
 
-    @Autowired
-    private Encrytor encrytor;
-
     private static String userName;
     private static String password;
 
@@ -25,6 +20,11 @@ public class SystemParams {
         return userName;
     }
 
+    /**
+     * Will get value from property and will encrypt by jasypt.
+     * jasypt dependence in pom.xml
+     * @param userName user name to be used.
+     */
     @Value("${localUserName}")
     public void setUserName(String userName) {
         SystemParams.userName = userName;

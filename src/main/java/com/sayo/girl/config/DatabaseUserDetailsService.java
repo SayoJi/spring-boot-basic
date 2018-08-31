@@ -26,17 +26,15 @@ public class DatabaseUserDetailsService implements UserDetailsService {
 
 //        String password = SystemParams.getPassword();
         if (user != null) {
-            Boolean isEnable = user.getEnableFlag() == null ? Boolean.FALSE : user.getEnableFlag();
-
             expectedUser =
                     new UserContext(
                             user.getUserName(),
                             user.getPassword(),
-                            isEnable,
+                            user.getEnableFlag(),
                             Boolean.TRUE,
                             Boolean.TRUE,
                             Boolean.TRUE,
-                            new ArrayList<GrantedAuthority>());
+                            new ArrayList<>());
             expectedUser.setUser(user);
             expectedUser.setUserRolesList(userRepository.queryUserOwnedRoleCodes(username));
         } else {
